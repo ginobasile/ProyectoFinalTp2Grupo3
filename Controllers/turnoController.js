@@ -1,4 +1,4 @@
-import { Turno } from "../Models/index.js";
+import { Actividad, Turno } from "../Models/index.js";
 
 class TurnoController {
   constructor() {}
@@ -25,6 +25,13 @@ class TurnoController {
     try {
       const result = await Turno.findAll({
         attributes: ["id", "fecha", "cantPersonaLimite", "idSede", "idActividad", "idProfesor"],
+        include: [
+          {
+            model: Actividad,
+            attributes: ["nombre", "duracion"],
+            as: "actividad",
+          },
+        ],
       });
       if (result.length === 0) {
         const error = new Error("no hay turnos");
@@ -47,6 +54,13 @@ class TurnoController {
           id,
         },
         attributes: ["id", "fecha", "cantPersonaLimite", "idSede", "idActividad", "idProfesor"],
+        include: [
+          {
+            model: Actividad,
+            attributes: ["nombre", "duracion"],
+            as: "actividad",
+          },
+        ],
       });
       if (!result) throw new Error("no se encontro al turno");
       res

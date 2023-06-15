@@ -23,7 +23,7 @@ Actividad.init(
   },
   {
     sequelize: connection,
-    modelName: "Actividad",
+    modelName: "sctividad",
     timestamps:false
   }
 );
