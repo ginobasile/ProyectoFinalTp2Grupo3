@@ -1,9 +1,9 @@
 import { DataTypes as DT, Model } from "sequelize";
 import connection from "../connection/connection.js";
 
-class Actividad extends Model {}
+class Profesor extends Model {}
 
-Actividad.init(
+Profesor.init(
   {
     nombre: {
       type: DT.STRING,
@@ -12,20 +12,19 @@ Actividad.init(
         len: [3,30]
       }
     },
-    duracion: {
-      type: DT.INTEGER(),
-      allowNull: false,
-      validate: {
-        max: 120,
-        min: 30, 
-      }
+    apellido: {
+        type:DT.STRING,
+        allowNull: false,
+        validate: {
+            len: [3,30]
+          }
     },
   },
   {
     sequelize: connection,
-    modelName: "Actividad",
+    modelName: "Profesor",
     timestamps:false
   }
 );
 
-export default Actividad;
+export default Profesor;

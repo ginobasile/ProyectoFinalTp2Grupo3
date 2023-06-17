@@ -19,6 +19,10 @@ User.init({
     mail:{
         type:DT.STRING,
         allowNull: false,
+        unique:true,
+        validate:{
+            isEmail: true
+        }
     },
     password:{
         type:DT.STRING,
@@ -48,6 +52,7 @@ User.init({
 {
     sequelize:connection,
     modelName:"User",
+    timestamps:false
 }
 );
 
