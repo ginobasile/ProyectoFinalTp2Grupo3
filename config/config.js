@@ -1,6 +1,5 @@
 import 'dotenv/config'
 
-
 export const serverPort = process.env.SERVER_PORT;
 export const database = process.env.DB_NAME;
 export const username =  process.env.DB_USERNAME;
