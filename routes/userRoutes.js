@@ -10,4 +10,4 @@ userRoutes.post("/", userController.createUser);
 userRoutes.put("/:id", userController.putUserById);
 userRoutes.delete("/:id", userController.deleteUserById);
 
-export default userRoutes
+export default userRoutes;
