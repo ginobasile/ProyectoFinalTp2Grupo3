@@ -7,7 +7,7 @@ class UserController {
       const {
         nombre,
         apellido,
-        mail,
+        email,
         password,
         dni,
         altura,
@@ -20,7 +20,7 @@ class UserController {
       const result = await User.create({
         nombre,
         apellido,
-        mail,
+        email,
         password,
         dni,
         altura,
@@ -46,7 +46,7 @@ class UserController {
           "id",
           "nombre",
           "apellido",
-          "mail",
+          "email",
           "password",
           "dni",
           "altura",
@@ -82,7 +82,7 @@ class UserController {
           "id",
           "nombre",
           "apellido",
-          "mail",
+          "email",
           "password",
           "dni",
           "altura",
@@ -108,7 +108,7 @@ class UserController {
       const {
         nombre,
         apellido,
-        mail,
+        email,
         password,
         dni,
         altura,
@@ -122,7 +122,7 @@ class UserController {
         {
           nombre,
           apellido,
-          mail,
+          email,
           password,
           dni,
           altura,

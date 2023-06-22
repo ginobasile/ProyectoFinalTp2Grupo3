@@ -17,14 +17,14 @@ User.init(
       type: DT.STRING,
       allowNull: false,
     },
-    mail: {
+    email: {
       type: DT.STRING,
       allowNull: false,
       unique: true,
       validate: {
         isEmail: true,
       },
-    },
+    },    
     password: {
       type: DT.STRING,
       allowNull: false,
