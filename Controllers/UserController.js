@@ -1,7 +1,9 @@
 import User from "../Models/User.js";
 
 class UserController {
-  constructor() {}
+  constructor() {
+    
+  }
   createUser = async (req, res, next) => {
     try {
       const {

@@ -1,8 +1,10 @@
-import User from "./User.js";
 import Turno from "./Turno.js";
 import Actividad from "./Actividad.js";
 import Profesor from "./Profesor.js"
 import Role from "./Role.js"
+import User from "./User.js";
+import Sede from "./Sede.js";
+
 
     Actividad.hasMany(Turno, {
         foreignKey: "idActividad",
@@ -13,4 +15,4 @@ import Role from "./Role.js"
     });
 
 
-export { User, Turno, Actividad, Profesor, Role};
+export {Turno, Actividad, Profesor, Role,User, Sede};
