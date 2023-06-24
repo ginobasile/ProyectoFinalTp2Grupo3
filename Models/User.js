@@ -1,12 +1,17 @@
 import { DataTypes as DT, Model } from "sequelize";
 //datatype carga tipos de datos
 import connection from "../connection/connection.js";
+import bcrypt from "bcrypt";
+class User extends Model {
 
-class User extends Model {}
+  async validarPassword(password){
+    return await bcrypt.compare(password, this.password);
+  }
 
-//recibe dos parametros
-//- en el primero van los campos
-//- en el segundo paso una key
+
+}
+
+
 User.init(
   {
     nombre: {
@@ -28,6 +33,9 @@ User.init(
     password: {
       type: DT.STRING,
       allowNull: false,
+    },
+    salt: {
+      type: DT.STRING()
     },
     dni: {
       type: DT.STRING(10),
@@ -66,5 +74,12 @@ User.init(
     timestamps: false,
   }
 );
+
+User.beforeCreate(async(user)=>{
+  const salt = await bcrypt.genSalt();
+  user.salt = salt;
+  const passwordHash = await bcrypt.hash(user.password, salt);
+  user.password = passwordHash;
+})
 
 export default User;

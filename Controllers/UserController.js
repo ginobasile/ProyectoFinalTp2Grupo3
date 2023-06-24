@@ -169,5 +169,22 @@ class UserController {
       res.status(400).send({ success: false, message: error.message });
     }
   };
+  login = async (req, res, next) => {
+    try {
+      const { email, password } = req.body
+      const result = await User.findOne({
+        where:{
+          email,
+        },
+      });
+      if(!result) throw new Error ("Credenciales incorrectas");
+
+      const hash = await result.validarPassword(password)
+      if(!hash) throw new Error("Password incorrecto");
+      res.status(200).send ({ success: true, message: " ", result});
+  }catch(error) {
+    res.status(400).send({ success:false, message: error.message});
+  }
+  }
 }
 export default UserController;
