@@ -13,6 +13,13 @@ import Sede from "./Sede.js";
         foreignKey: "idActividad",
         as: "actividad",
     });
+    Role.hasMany(User, {
+        foreignKey: "roleId",
+      });
+    User.belongsTo(Role, {
+        foreignKey: "roleId",
+        as: "role",
+    });
 
 
 export {Turno, Actividad, Profesor, Role,User, Sede};

@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "9ebb70c2-9e10-4c84-9372-5d73607b8dc1",
+		"name": "gimnasio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "nombreDummy",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "apellidoDummy",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "emaild@dummy.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "passwordDummy",
+									"type": "text"
+								},
+								{
+									"key": "dni",
+									"value": "dniDummy",
+									"type": "text"
+								},
+								{
+									"key": "altura",
+									"value": "1.9",
+									"type": "text"
+								},
+								{
+									"key": "peso",
+									"value": "80",
+									"type": "text"
+								},
+								{
+									"key": "edad",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "contacto",
+									"value": "contactoDummy",
+									"type": "text"
+								},
+								{
+									"key": "roleId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ticketsRestantes",
+									"value": "100",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "email@dummy.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "passwordDummy",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
