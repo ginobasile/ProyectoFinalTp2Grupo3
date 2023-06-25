@@ -1,7 +1,7 @@
 import { verifyToken } from "../utils/tokens.js";
 
 
-const validateAccess = (req, res, next) => {
+export const validateAccess = (req, res, next) => {
   try {
     const cookies= req.headers.cookie || ""
     const { token } = convertCookiesToJson(cookies);
@@ -14,6 +14,17 @@ const validateAccess = (req, res, next) => {
     next(error);
   }
 };
+
+
+export const isAdmin = (req, res, next) => {
+  try {
+    if(req.user.roleId != 1) throw new Error("Acceso denegado. El usuario no es administrador")
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 function convertCookiesToJson(cookieString) {
   const cookies = cookieString.split('; ');
@@ -28,4 +39,3 @@ function convertCookiesToJson(cookieString) {
   return jsonToken;
 }
 
-export default validateAccess
