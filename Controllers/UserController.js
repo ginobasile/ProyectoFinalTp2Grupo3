@@ -1,4 +1,4 @@
-import {User,Role} from "../Models/index.js";
+import {User,Role, Turno} from "../Models/index.js";
 import { generateToken} from "../utils/tokens.js";
 
 class UserController {
@@ -17,8 +17,6 @@ class UserController {
         peso,
         edad,
         contacto,
-        roleId,
-        ticketsRestantes,
       } = req.body;
       const result = await User.create({
         nombre,
@@ -30,8 +28,8 @@ class UserController {
         peso,
         edad,
         contacto,
-        roleId,
-        ticketsRestantes,
+        roleId: 2,
+        ticketsRestantes : 0,
       });
       if (!result) throw new Error("El usuario no pudo ser creado");
       res
@@ -64,6 +62,11 @@ class UserController {
             model: Role,
             attributes: ["role"],
             as: "role",
+          },
+          {
+            model: Turno,
+            attributes: ["id", "fecha"],
+            as: "turnos",
           },
         ],
       });
@@ -108,6 +111,11 @@ class UserController {
             attributes: ["role"],
             as: "role",
           },
+          {
+            model: Turno,
+            attributes: ["id", "fecha"],
+            as: "turnos",
+          },
         ],
       });
       if (!result) throw new Error("No se encontro usuario con ese id");
@@ -132,8 +140,8 @@ class UserController {
         peso,
         edad,
         contacto,
-        roleId,
-        ticketsRestantes,
+        ticketsRestantes
+        
       } = req.body;
       const result = await User.update(
         {
@@ -146,7 +154,6 @@ class UserController {
           peso,
           edad,
           contacto,
-          roleId,
           ticketsRestantes,
         },
         {
@@ -203,6 +210,7 @@ class UserController {
         roleId: result.roleId,
       };
       const token = generateToken(payload);
+      //console.log(token);
       res.cookie("token", token);
 
       res.status(200).send ({ success: true, message: " ", result});

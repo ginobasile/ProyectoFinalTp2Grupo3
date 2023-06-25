@@ -1,4 +1,5 @@
-import { Actividad, Turno } from "../Models/index.js";
+import { Actividad, Profesor, Sede, Turno, User} from "../Models/index.js";
+import turnoPersona from "../Models/turnoPersona.js";
 
 class TurnoController {
   constructor() {}
@@ -31,6 +32,21 @@ class TurnoController {
             attributes: ["nombre", "duracion"],
             as: "actividad",
           },
+          {
+            model: Sede,
+            attributes: ["nombre", "ubicacion"],
+            as: "sede",
+          },
+          {
+            model: Profesor,
+            attributes: ["nombre", "apellido"],
+            as: "profesor",
+          },
+          {
+            as: "users",
+            model: User,
+            attributes: ["id","nombre","apellido"]
+          },
         ],
       });
       if (result.length === 0) {
@@ -59,6 +75,21 @@ class TurnoController {
             model: Actividad,
             attributes: ["nombre", "duracion"],
             as: "actividad",
+          },
+          {
+            model: Sede,
+            attributes: ["nombre", "ubicacion"],
+            as: "sede",
+          },
+          {
+            model: Profesor,
+            attributes: ["nombre", "apellido"],
+            as: "profesor",
+          },
+          {
+            as: "users",
+            model: User,
+            attributes: ["id","nombre","apellido"]
           },
         ],
       });

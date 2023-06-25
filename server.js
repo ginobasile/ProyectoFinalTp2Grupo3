@@ -17,6 +17,6 @@ app.use((error, req, res, next) => {
 
 await connection.sync({force:false}).then(() => {
     app.listen(serverPort, ()=>{
-        console.log("Server ok: http://localhost:8080")
+        console.log("Server ok: http://localhost:" + serverPort)
     });
 }).then(roleSeed)

@@ -54,11 +54,6 @@ User.init(
       type: DT.STRING(15),
       allowNull: false,
     },
-    administrador: {
-      type: DT.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
     ticketsRestantes: {
       type: DT.INTEGER,
       allowNull: false,
