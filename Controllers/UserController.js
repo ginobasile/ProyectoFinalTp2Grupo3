@@ -1,4 +1,5 @@
-import User from "../Models/User.js";
+import {User,Role} from "../Models/index.js";
+import { generateToken} from "../utils/tokens.js";
 
 class UserController {
   constructor() {
@@ -16,7 +17,7 @@ class UserController {
         peso,
         edad,
         contacto,
-        administrador,
+        roleId,
         ticketsRestantes,
       } = req.body;
       const result = await User.create({
@@ -29,7 +30,7 @@ class UserController {
         peso,
         edad,
         contacto,
-        administrador,
+        roleId,
         ticketsRestantes,
       });
       if (!result) throw new Error("El usuario no pudo ser creado");
@@ -55,8 +56,15 @@ class UserController {
           "peso",
           "edad",
           "contacto",
-          "administrador",
+          "roleId",
           "ticketsRestantes",
+        ],
+        include: [
+          {
+            model: Role,
+            attributes: ["role"],
+            as: "role",
+          },
         ],
       });
       if (result.length === 0) {
@@ -91,8 +99,15 @@ class UserController {
           "peso",
           "edad",
           "contacto",
-          "administrador",
+          "roleId",
           "ticketsRestantes",
+        ],
+        include: [
+          {
+            model: Role,
+            attributes: ["role"],
+            as: "role",
+          },
         ],
       });
       if (!result) throw new Error("No se encontro usuario con ese id");
@@ -117,7 +132,7 @@ class UserController {
         peso,
         edad,
         contacto,
-        administrador,
+        roleId,
         ticketsRestantes,
       } = req.body;
       const result = await User.update(
@@ -131,7 +146,7 @@ class UserController {
           peso,
           edad,
           contacto,
-          administrador,
+          roleId,
           ticketsRestantes,
         },
         {
@@ -181,10 +196,32 @@ class UserController {
 
       const hash = await result.validarPassword(password)
       if(!hash) throw new Error("Password incorrecto");
+
+      const payload = {
+        id: result.id,
+        email: result.email,
+        roleId: result.roleId,
+      };
+      const token = generateToken(payload);
+      res.cookie("token", token);
+
       res.status(200).send ({ success: true, message: " ", result});
+
   }catch(error) {
     res.status(400).send({ success:false, message: error.message});
   }
-  }
+  };
+  me = async (req, res, next) => {
+    const {user}=req
+    res
+    .status(200)
+    .send({ success: true, message: "Usuario", user });
+  };
+  logout = async (req, res, next) => {  
+    res.cookie("token", "")
+    res
+    .status(200)
+    .send({ success: true, message: "Usuario deslogueado"});
+  };
 }
 export default UserController;

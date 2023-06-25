@@ -7,10 +7,7 @@ class User extends Model {
   async validarPassword(password){
     return await bcrypt.compare(password, this.password);
   }
-
-
 }
-
 
 User.init(
   {
@@ -63,10 +60,14 @@ User.init(
       defaultValue: false,
     },
     ticketsRestantes: {
-      type: DT.NUMBER,
+      type: DT.INTEGER,
       allowNull: false,
       defaultValue: 0,
     },
+    roleId: {
+      type: DT.INTEGER(),
+      defaultValue: 2,
+    }
   },
   {
     sequelize: connection,

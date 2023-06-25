@@ -2,7 +2,8 @@
 import express from "express"
 const app = express()
 import indexRoutes from "./routes/indexRoutes.js"
-import connection from "./connection/connection.js"
+import connection from "./connection/connection.js";
+import roleSeed from "./seed/roleSeed.js";
 import {serverPort} from "./config/config.js"
 
 app.use(express.json());
@@ -18,5 +19,4 @@ await connection.sync({force:false}).then(() => {
     app.listen(serverPort, ()=>{
         console.log("Server ok: http://localhost:8080")
     });
-});
-
+}).then(roleSeed)
