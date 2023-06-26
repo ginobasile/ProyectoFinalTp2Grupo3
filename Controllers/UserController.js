@@ -198,6 +198,18 @@ class UserController {
         where:{
           email,
         },
+        include: [
+          {
+            model: Role,
+            attributes: ["role"],
+            as: "role",
+          },
+          {
+            model: Turno,
+            attributes: ["id", "fecha"],
+            as: "turnos",
+          },
+        ],
       });
       if(!result) throw new Error ("Credenciales incorrectas");
 
