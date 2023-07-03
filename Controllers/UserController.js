@@ -28,7 +28,7 @@ class UserController {
         peso,
         edad,
         contacto,
-        roleId: 2,
+        roleId:2,
         ticketsRestantes : 0,
       });
       if (!result) throw new Error("El usuario no pudo ser creado");
